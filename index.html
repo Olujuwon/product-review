@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"> <!-- implents RWD -->
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./index.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./index.css">
+<title>product Review</title>
+</head>
+<body>
+<div class="container-fixed">
+	<nav class="navbar navbar-light bg-red" style="background-color: #bdc3c7; border-top-left-radius: 5px;
+	
+	border-bottom-left-radius: 5px; border-top-right-radius: 5px;
+	
+	border-bottom-right-radius: 5px; height: 120px;" >
+		<a class="navbar-brand" href="#">
+		  <img src="./gemini.png" width="40" height="40" class="d-inline-block align-top" alt="">
+		  Company Name
+		</a>
+	</nav>
+	
+		<p>Please take a minute to rate our services.</p>
+	
+	<div class="smiley">
+		<figure class="1">
+			<input type="image" src="./excellent.png" value="4" class="excellent"/>
+			<!-- <img alt="" src="./excellent.png"> -->
+			<figcaption>Excellent</figcaption>
+		</figure>
+		<figure class="2">
+			<input type="image" src="./good.png" value="3"  class="good"/>
+			<figcaption>Good</figcaption>
+		</figure>
+		<figure class="3">
+			<input type="image" src="./fair.jpg" value="2"  class="fair"/>
+			<figcaption>Fair</figcaption>
+		</figure>
+		<figure class="4">
+			<input type="image" src="./poor.png" value="1"  class="poor"/>
+			<figcaption>Poor</figcaption>
+		</figure>
+		<figure class="5">
+			<input type="image" src="./disaster.png" value="0" class="disaster" />
+			<figcaption>Disaster</figcaption>
+		</figure>
+	</div>
+	<div class="footer">
+		<footer>Copyright &copy; Presnova&reg; 2017</footer>
+	</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB8X-6Ag55tdby9WbslXzVk9k55te1Xz7Y",
+    authDomain: "prodrev-5c219.firebaseapp.com",
+    databaseURL: "https://prodrev-5c219.firebaseio.com",
+    projectId: "prodrev-5c219",
+    storageBucket: "prodrev-5c219.appspot.com",
+    messagingSenderId: "687907557350"
+  };
+  firebase.initializeApp(config);
+  //variable to reference database
+var dbRef = firebase.database();
+//var reviewsRef= dbRef.ref('reviews');
+</script>
+</body>
+</body>
+</html>
