@@ -13,7 +13,7 @@ $(document).ready(function(){
             });
             alert("Thank you for your time");
      });
-
+     
      $(".3").click(function(){
         firebase.database().ref('reviews').push({
                 fair: $(".fair").val(),
