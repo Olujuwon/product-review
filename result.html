@@ -7,9 +7,14 @@
 <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 <script type="text/javascript" src="./index.js"></script>
 <script type="text/javascript" src="./chart.js"></script>
+<script type="text/javascript">
+    function pageRedirect() {
+      window.location.href = "./index.html";
+    }      
+</script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./index.css">
-<title>product Review</title>
+<title>Review Results</title>
 </head>
 <body>
 <div class="container-fixed">
@@ -24,32 +29,14 @@
 		</a>
 	</nav>
 	
-		<p>Please take a minute to rate our services.</p>
+		<p>Results</p>
 	
 	<div class="smiley">
-		<figure class="1">
-			<input type="image" src="./excellent.png" value="4" class="excellent"/>
-			<!-- <img alt="" src="./excellent.png"> -->
-			<figcaption>Excellent</figcaption>
-		</figure>
-		<figure class="2">
-			<input type="image" src="./good.png" value="3"  class="good"/>
-			<figcaption>Good</figcaption>
-		</figure>
-		<figure class="3">
-			<input type="image" src="./fair.jpg" value="2"  class="fair"/>
-			<figcaption>Fair</figcaption>
-		</figure>
-		<figure class="4">
-			<input type="image" src="./poor.png" value="1"  class="poor"/>
-			<figcaption>Poor</figcaption>
-		</figure>
-		<figure class="5">
-			<input type="image" src="./disaster.png" value="0" class="disaster" />
-			<figcaption>Disaster</figcaption>
-		</figure>
-	</div>
-	<!-- <div id="chartContainer" style="width: 100%; height: 300px"></div> -->
+        <canvas></canvas>
+        <div id="displaydata"></div>
+    </div>
+    <input type="button" value="Back" class="back" onclick="pageRedirect()">
+    
 	<div class="footer">
 		<footer>Copyright &copy; Presnova&reg; 2017</footer>
 	</div>
