@@ -11,7 +11,7 @@ window.onload = function() {
 			type: "bar", 
 			toolTipContent: "{label}: US$ {y} billion",
 			dataPoints: [ 
-				{ label: "Excellent",             y: 80  }, 
+				{ label: "Excellent",             y: 56  }, 
 				{ label: "Good",            y: 94}, 
 				{ label: "Fair",    y: 50  }, 
 				{ label: "Poor",           y: 20}, 

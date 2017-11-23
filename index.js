@@ -2,38 +2,52 @@ $(document).ready(function(){
 
     $(".1").click(function(){
         firebase.database().ref('reviews').push({
-                excellent: $(".excellent").val(),
+            rv: $(".excellent").val(),
+            time: $.now()
             });
-            alert("Thank you for your time");
+            window.location.href = "./result.html";
+            //alert("Thank you for your time");
      });
 
      $(".2").click(function(){
         firebase.database().ref('reviews').push({
-                good: $(".good").val(),
+            rv: $(".good").val(),
+            time: $.now()
             });
-            alert("Thank you for your time");
+            window.location.href = "./result.html";
      });
      
      $(".3").click(function(){
         firebase.database().ref('reviews').push({
-                fair: $(".fair").val(),
+            rv: $(".fair").val(),
+            time: $.now()
             });
-            alert("Thank you for your time");
+            window.location.href = "./result.html";
      });
 
      $(".4").click(function(){
         firebase.database().ref('reviews').push({
-                poor: $(".poor").val(),
+            rv: $(".poor").val(),
+            time: $.now()
             });
-            alert("Thank you for your time");
+            window.location.href = "./result.html";
      });
 
      $(".5").click(function(){
-        firebase.database().ref('reviews').push({
-                disaster: $(".disaster").val(),
+        firebase.database().ref('reviews/').push({
+                rv: $(".disaster").val(),
+                time: $.now()
             });
-            alert("Thank you for your time");
+            window.location.href = "./result.html";
      });
+
+     var userCountRef = firebase.database().ref('reviews/');
+     userCountRef.on('child_added', function(snapshot) {
+         console.log("display database")
+         $('#displaydata').append("<li id=" + snapshot.val().id + ">" + snapshot.val());
+     });
+
+     
 });
     /*$(".1").on("click", function(){
         reviews = $("#ex").val()
