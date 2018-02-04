@@ -6,7 +6,6 @@ $(document).ready(function(){
             time: $.now()
             });
             window.location.href = "./result.html";
-            //alert("Thank you for your time");
      });
 
      $(".2").click(function(){
@@ -39,19 +38,5 @@ $(document).ready(function(){
                 time: $.now()
             });
             window.location.href = "./result.html";
-     });
-
-     var userCountRef = firebase.database().ref('reviews/');
-     userCountRef.on('child_added', function(snapshot) {
-         console.log("display database")
-         $('#displaydata').append("<li id=" + snapshot.val().id + ">" + snapshot.val());
-     });
-
-     
+     });   
 });
-    /*$(".1").on("click", function(){
-        reviews = $("#ex").val()
-        dbRef.ref().set({
-            reviews:reviews
-        });
-    });*/

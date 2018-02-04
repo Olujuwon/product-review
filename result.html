@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"> <!-- implents RWD -->
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-<script type="text/javascript" src="./index.js"></script>
-<script type="text/javascript" src="./chart.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script type="text/javascript">
     function pageRedirect() {
       window.location.href = "./index.html";
@@ -32,9 +29,9 @@
 		<p>Results</p>
 	
 	<div class="smiley">
-        <canvas></canvas>
-        <div id="displaydata"></div>
+        <canvas id="myChart"></canvas> 
     </div>
+    
     <input type="button" value="Back" class="back" onclick="pageRedirect()">
     
 	<div class="footer">
@@ -42,7 +39,9 @@
 	</div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script>
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+<<script>
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyB8X-6Ag55tdby9WbslXzVk9k55te1Xz7Y",
@@ -53,10 +52,75 @@
     messagingSenderId: "687907557350"
   };
   firebase.initializeApp(config);
+
   //variable to reference database
 var dbRef = firebase.database();
-//var reviewsRef= dbRef.ref('reviews');
+var reviewsRef= dbRef.ref('reviews');
 </script>
+<script>
+    var ref = firebase.database().ref('reviews');
+     ref.on('value', gotData, errData);
+
+     function gotData(data) {               //function to get data from backend *Firebase*
+         var scores = data.val();
+         var keys = Object.keys(scores);
+        const arrayOfGrades = Object.values(scores).map(value => +value.rv);
+        
+let counts = [];
+arrayOfGrades.map(unique = x =>  counts[x] = (counts[x] || 0)+1 ); //get unique data count from the scores
+
+const perCentScore = counts.map(k => Math.round((k / arrayOfGrades.length)*100)) ; //calc percentage score from score data/array
+let h = perCentScore.reverse(perCentScore.slice(1,6)); //reverse %score to fix the empty value issue
+
+console.log('length of array: ', arrayOfGrades.length);
+console.log('percentage: ', perCentScore);
+console.log('percentage2: ', h);
+console.log('counts: ', counts);
+//the bar charts starts here...
+         var ctx = document.getElementById("myChart");
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ["Excellent", "Good", "Fair", "Poor", "Disaster"],
+                        datasets: [{
+                            label: '% Percentage Votes',
+                            data: perCentScore,   
+                            backgroundColor: [
+                                'rgba(145,180,150, 1)',
+                                'rgba(51, 110, 123, 1)',
+                                'rgba(242, 121, 53, 1)',
+                                'rgba(224, 130, 131, 1)',
+                                'rgba(192, 57, 43, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }]
+                        }
+                    }
+                });
+                }
+                function errData(err) {
+                    console.log('Error 404!');
+                    console.log(err);
+                }
+
+    </script>
 </body>
 </body>
 </html>
